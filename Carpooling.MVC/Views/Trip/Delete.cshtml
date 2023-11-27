@@ -1,0 +1,28 @@
+﻿@{ ViewBag.Title = "Delete Trip"; }
+@model Carpooling.MVC.Models.TripViewModel
+
+<h2>Delete Trip</h2>
+
+<div>
+    <h3>Do you want to delete this trip?</h3>
+    <ul>
+        <li class="margin12">Start Destination: @this.Model.StartDestination</li>
+        <li class="margin12">End Destination: @this.Model.EndDestination</li>
+        <li class="margin12">Departure: @this.Model.Departure</li>
+        <li class="margin12">Arrival: @this.Model.FreeSpots</li>
+        <li class="margin12">Status: @this.Model.TravelStatus</li>
+        <li class="margin12">
+            Trip Candidates: @foreach (var candidate in this.Model.TripCandidates)
+            {
+    <div class="row">
+        <div class="cell">@candidate.Passanger.FirstName</div>
+        <div class="cell">@candidate.Passanger.LastName</div>
+    </div>            }
+        </li>
+    </ul>
+</div>
+
+<form asp-action="Delete">
+    <input type="submit" value="Delete" class="btn-danger" />
+    | <a asp-action="Index" class="nav">Back</a>
+</form>

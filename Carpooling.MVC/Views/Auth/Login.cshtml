@@ -1,0 +1,30 @@
+﻿@{ ViewData["Title"] = "Login"; }
+@model Carpooling.MVC.Models.LoginViewModel
+<link rel="stylesheet" href="~/css/Testing.css" asp-append-version="true" />
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!------ Include the above in your HEAD tag ---------->
+<div class="text-center">
+    <h2>Login</h2>
+    <form asp-action="Login">
+        <div>
+            <label asp-for="@Model.Username" class="form-label"></label>
+            <br />
+            <input asp-for="@Model.Username" class="fadeIn second" placeholder="login">
+            <span asp-validation-for="@Model.Username" class="form-error"></span>
+        </div>
+        <br />
+        <div>
+            <label asp-for="@Model.Password" class="form-label"></label>
+            <br />
+            <input asp-for="@Model.Password" type="password" id="password" class="fadeIn third" placeholder="password">
+            <span asp-validation-for="@Model.Password" class="form-error"></span>
+        </div>
+        <br>
+        <div>
+            <input type="submit" class="fadeIn fourth" value="Log In" />
+            <input asp-action="RegisterForm" type="submit" class="fadeIn fourth" value="Register" />
+        </div>
+    </form>
+</div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

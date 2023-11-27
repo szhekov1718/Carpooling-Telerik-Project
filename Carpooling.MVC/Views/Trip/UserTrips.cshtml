@@ -1,0 +1,59 @@
+﻿@{ ViewBag.Title = "My Trips"; }
+@model Carpooling.MVC.Models.TripView
+
+<h2>My Trips</h2>
+
+<form asp-controller="Trip" asp-action="FilterUserTripsBy">
+    <div class="form-group">
+        <label class="form-label mt-4">Select filter</label>
+        <select class="form-select" asp-route-searchAttribute="exampleSelect1" asp-for="SearchAttribute">
+            <option>Departure</option>
+            <option>StartDestination</option>
+            <option>EndDestination</option>
+            <option>PastTrips</option>
+            <option>FutureTrips</option>
+            <option>AsDriver</option>
+            <option>AsPassenger</option>
+        </select>
+    </div>
+    <span asp-validation-for="@Model.Value" class="form-error"></span>
+    <div class="input-group mb-3">
+        <input asp-for="Value" type="search" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+    </div>
+    <div class="btn-group" role="group">
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <button asp-controller="Feedback" asp-action="Index" type="submit" class="btn btn-primary">My Comments</button>
+        <button asp-controller="Feedback" asp-action="FeedbackForMe" type="submit" class="btn btn-primary">Feedback For Me</button>
+        <button asp-controller="Trip" asp-action="Index" type="submit" class="btn btn-primary">Back</button>
+    </div>
+</form>
+<br>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Start Destination</th>
+            <th scope="col">End Destination</th>
+            <th scope="col">Departure</th>
+            <th scope="col">Status</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    @{
+        foreach(var trip in this.Model.tripViewModels)
+        {
+            <tbody>
+                <tr class="table-active">
+                    <th scope="row">@trip.StartDestination</th>
+                    <td>@trip.EndDestination</td>
+                    <td>@trip.Departure</td>
+                    <td>@trip.TravelStatus</td>
+                    <td>
+                        <form asp-controller="Trip" asp-action="Details" asp-route-id="@trip.Id">
+                            <button type="submit" class="btn btn-primary">Details</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    }
+</table>

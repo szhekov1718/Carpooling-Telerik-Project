@@ -1,0 +1,41 @@
+﻿@model Carpooling.MVC.Models.TripViewModel
+
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="@ViewBag.Action">
+    <div>
+        <label asp-for="StartDestination" class="form-label"></label>
+        <br />
+        <input asp-for="StartDestination" class="form-input" />
+        <span asp-validation-for="StartDestination" class="form-error"></span>
+    </div>
+    <div>
+        <label asp-for="EndDestination" class="form-label"></label>
+        <br />
+        <input asp-for="EndDestination" class="form-input" />
+        <span asp-validation-for="EndDestination" class="form-error"></span>
+    </div>
+    <div>
+        <label asp-for="Departure" class="form-label"></label>
+        <br />
+        <input asp-for="Departure" class="form-input" />
+        <span asp-validation-for="Departure" class="form-error"></span>
+    </div>
+    <div>
+        <label asp-for="FreeSpots" class="form-label"></label>
+        <br />
+        <input asp-for="FreeSpots" class="form-input" />
+        <span asp-validation-for="FreeSpots" class="form-error"></span>
+    </div>
+    <div>
+        <label asp-for="TravelStatus" class="form-label"></label>
+        <br />
+        <input asp-for="TravelStatus" class="form-input" />
+        <span asp-validation-for="TravelStatus" class="form-error"></span>
+    </div>
+    <div>
+        <input type="submit" value="@ViewBag.ButtonValue" class="btn-primary" />
+        | <a asp-action="Index" class="nav">Back</a>
+    </div>
+</form>

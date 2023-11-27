@@ -1,0 +1,27 @@
+﻿@{ ViewBag.Title = "Apply for Trip"; }
+@model Carpooling.MVC.Models.TripViewModel
+
+<div>
+    <h3>Do you want to apply for this trip?</h3>
+    <br>
+    <ul>
+        <li class="margin12">Start Destination: @this.Model.StartDestination</li>
+        <li class="margin12">End Destination: @this.Model.EndDestination</li>
+        <li class="margin12">Departure: @this.Model.Departure</li>
+        <li class="margin12">Arrival: @this.Model.FreeSpots</li>
+        <li class="margin12">Status: @this.Model.TravelStatus</li>
+        <li class="margin12">
+            Trip Candidates: @foreach(var candidate in this.Model.TripCandidates)
+            {
+                <div class="row">
+                    <div class="cell">@candidate.Passanger.FirstName</div>
+                    <div class="cell">@candidate.Passanger.LastName</div>
+                </div>}
+        </li>
+    </ul>
+</div>
+<br>
+<form asp-controller="Trip">
+    <button asp-action="ApplyForTrip" asp-route-Id="@Model.Id" type="submit" class="btn btn-primary">Apply</button>
+    <button asp-action="Index" type="submit" class="btn btn-primary">Back</button>
+</form>

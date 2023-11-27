@@ -1,0 +1,65 @@
+﻿@{ ViewBag.Title = "Trip Details"; }
+@{ this.ViewData["UserName"] = this.Context.Request.Cookies["UserName"];
+    this.ViewData["flag"] = 0;}
+@model Carpooling.MVC.Models.TripViewModel
+
+<h2>Trip Details</h2>
+
+<div>
+    <ul>
+        <li class="margin12">Start Destination: @this.Model.StartDestination</li>
+        <li class="margin12">End Destination: @this.Model.EndDestination</li>
+        <li class="margin12">Departure: @this.Model.Departure</li>
+        <li class="margin12">Free Spots: @this.Model.FreeSpots</li>
+        <li class="margin12">Status: @this.Model.TravelStatus</li>
+        <li class="margin12">Driver: @this.Model.Driver.FirstName @this.Model.Driver.LastName</li>
+        <li class="margin12">
+            Passengers: @foreach(var candidate in this.Model.TripCandidates)
+            {
+                @if(candidate.Passanger.Username == (string)this.ViewData["UserName"])
+                {
+                    this.ViewData["flag"] = 1;
+                }
+                @if(candidate.IsApproved == true)
+                {
+                    <div class="row">
+                        @candidate.Passanger.FirstName @candidate.Passanger.LastName
+                    </div>
+                }
+            }
+        </li>
+    </ul>
+</div>
+<form asp-controller="Trip" class="btn-group" role="group" aria-label="Basic">
+    @if(this.Model.TravelStatus == Carpooling.Data.Enums.TravelStatus.Completed)
+    {
+        <button asp-controller="Feedback" asp-action="LeaveFeedbackForm" asp-route-Id="@Model.Id" type="submit" class="btn btn-primary">Leave Feedback</button>
+    }
+    @if(this.Model.Driver.Username == (string)this.ViewData["UserName"])
+    {
+        @if(this.Model.TravelStatus == Carpooling.Data.Enums.TravelStatus.Travelling)
+        {
+            <button asp-action="MakeTripCompleted" asp-route-Id="@Model.Id" type="submit" class="btn btn-primary">Make Trip Completed</button>
+        }
+        @if(this.Model.TravelStatus == Carpooling.Data.Enums.TravelStatus.NotStarted)
+        {
+            @if(Model.TripCandidates.Where(tc => tc.IsDeleted == false).Count() > 0)
+            {
+                <button asp-action="TripCandidates" asp-route-Id="@Model.Id" type="submit" class="btn btn-primary">Trip Candidates</button>
+            }
+            <button asp-action="CancelTrip" asp-route-Id="@Model.Id" type="submit" class="btn btn-primary">Cancel Trip</button>
+        }
+    }
+    @if(this.Model.TravelStatus == Carpooling.Data.Enums.TravelStatus.NotStarted && this.Model.Driver.Username != (string)this.ViewData["UserName"])
+    {
+        @if(this.ViewData["flag"].Equals(0))
+        {
+            <button asp-action="ApplyForTripForm" asp-route-Id="@Model.Id" type="submit" class="btn btn-primary">Apply</button>
+        }
+        else if(Model.TripCandidates.Where(tc => tc.Passanger.Username == (string)this.ViewData["UserName"] && tc.IsApproved == true).Count() > 0)
+        {
+            <button asp-action="CancelTripCandidacy" asp-route-Id="@Model.Id" type="submit" class="btn btn-primary">Cancel Candidacy</button>
+        }
+    }
+    <button asp-action="Index" type="submit" class="btn btn-primary">Back</button>
+</form>

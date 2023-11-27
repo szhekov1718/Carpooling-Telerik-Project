@@ -1,0 +1,25 @@
+﻿@{ ViewBag.Title = "Edit Trip Comment"; }
+@model Carpooling.MVC.Models.FeedbackViewModel
+
+<h2>Edit Trip Comment</h2>
+<form asp-controller="Feedback" asp-action="Edit" asp-route-FeedbackId="@Model.FeedbackId">
+    <label for="Text comment" class="form-label mt-4">Trip Rating</label>
+    <div class="form-group">
+        <label for="exampleSelect1" class="form-label mt-4">Select Rating</label>
+        <select asp-for="@Model.Rating" class="form-select" id="exampleSelect1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Text comment" class="form-label mt-4"></label>
+        <textarea asp-for="@Model.Comment" class="form-control" id="exampleTextarea" rows="3">@Model.Comment</textarea>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Edit Comment</button>
+        <button asp-action="Index" type="submit" class="btn btn-primary">Back</button>
+    </div>
+</form>

@@ -1,0 +1,68 @@
+﻿@model Carpooling.MVC.Models.ContactUsViewModel
+
+
+@if(ViewBag.Message == null)
+{
+    <div class="row" style="padding: 30px; background-color: #F7F7F6;">
+
+        <form method="post">
+            <h2>Send Email</h2>
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <span asp-validation-for="Name" class="form-error"></span>
+                    <div class="form-group">
+                        <label asp-for="Name">Full Name</label>
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <span asp-validation-for="Email" class="form-error"></span>
+                    <div class="form-group">
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <span asp-validation-for="PhoneNumber" class="form-error"></span>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber">Phone Number</label>
+                        <input asp-for="PhoneNumber" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <span asp-validation-for="Topic" class="form-error"></span>
+                    <div class="form-group">
+                        <label asp-for="Topic">Topic</label>
+                        <input asp-for="Topic" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <span asp-validation-for="Description" class="form-error"></span>
+                    <div class="form-group">
+                        <label asp-for="Description">Description</label>
+                        <textarea rows="5" cols="15"
+                                  asp-for="Description" class="form-control"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <button type="submit"
+                            class="btn btn-primary">
+                        Send
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>}
+
+<div>
+    <div>
+        @if(ViewBag.Message != null)
+        {
+            <div class="fs-4" style="text-align: center">@ViewBag.Message</div>}
+    </div>
+</div>
+
+

@@ -1,0 +1,87 @@
+@{ ViewData["Title"] = "Contacts"; }
+
+<body class="theme-1">
+    <div class="breadcrumb-div">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                </div>
+                <div class="col-6">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-padding contact-info-div">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-0 col-sm-6 offset-sm-3">
+                    <div class="single-contact-info text-center">
+                        <h4>Our E-mail</h4>
+                        <p>carpoolingtelerik@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single-contact-info text-center">
+                        <h4>Our meeting spot</h4>
+                        <p>Vasil Aprilov 66, Plovdiv, Bulgaria</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single-contact-info text-center">
+                        <h4>Our phone numbers</h4>
+                        <p>Stanimir: +359899279132, Stanislav: +359895196358</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-padding contact-form-div p-t-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <partial name="_ContactUsFormPartial.cshtml" />
+                </div>
+                <div class="col-lg-6">
+                    <div class="mapouter" style="float: right;">
+                        <div class="gmap_canvas">
+                            <iframe width="500" height="600" id="gmap_canvas"
+                                    src="https://maps.google.com/maps?q=free%20bar&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                    frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                            </iframe>
+                            <style>
+                                .mapouter {
+                                    position: relative;
+                                    text-align: right;
+                                    height: 500px;
+                                    width: 600px;
+                                }
+                            </style><a href="https://www.embedgooglemap.net"></a>
+                            <style>
+                                .gmap_canvas {
+                                    overflow: hidden;
+                                    background: none !important;
+                                    height: 500px;
+                                    width: 600px;
+                                }
+                            </style></div></div>
+                            <style>
+                                .mapouter {
+                                    position: relative;
+                                    text-align: right;
+                                    height: 620px;
+                                    width: 550px;
+                                }
+                            </style>
+                            <style>
+                                .gmap_canvas {
+                                    overflow: hidden;
+                                    background: none !important;
+                                    height: 620px;
+                                    width: 550px;
+                                }
+                            </style>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</body>

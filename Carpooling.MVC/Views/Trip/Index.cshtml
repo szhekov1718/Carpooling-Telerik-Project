@@ -1,0 +1,68 @@
+﻿@{ ViewBag.Title = "All Trips"; }
+@model Carpooling.MVC.Models.TripView
+
+@if((string)this.ViewData["CurrentUserRole"] == "Admin")
+{
+    <h2>All Trips</h2>
+}
+else
+{
+    <h2>All Available Trips</h2>
+}
+<form asp-controller="Trip" asp-action="FilterBy">
+    <div class="form-group">
+        <label class="form-label mt-4">Select filter</label>
+        <select class="form-select" asp-route-searchAttribute="exampleSelect1" asp-for="SearchAttribute">
+            <option>Departure</option>
+            <option>StartDestination</option>
+            <option>EndDestination</option>
+        </select>
+    </div>
+    <br>
+    <span asp-validation-for="@Model.Value" class="form-error"></span>
+    <div class="input-group mb-3">
+        <input asp-for="Value" type="search" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+    </div>
+    <br>
+    <div class="btn-group" role="group">
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <button asp-action="CreateForm" type="submit" class="btn btn-primary">Create Trip</button>
+        <button asp-action="MyTrips" type="submit" class="btn btn-primary">My Trips</button>
+    </div>
+    <br>
+</form>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Start Destination</th>
+            <th scope="col">End Destination</th>
+            <th scope="col">Departure</th>
+            <th scope="col">Free Spots</th>
+            <th scope="col">Status</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    @{
+        foreach(var trip in this.Model.tripViewModels)
+        {
+            <tbody>
+                <tr class="table-active">
+                    <th scope="row">@trip.StartDestination</th>
+                    <td>@trip.EndDestination</td>
+                    <td>@trip.Departure</td>
+                    <td>@trip.FreeSpots</td>
+                    <td>@trip.TravelStatus</td>
+                    <td>
+                        <form asp-controller="Trip" class="btn-group" role="group" aria-label="Basic example">
+                            <button asp-action="Details" asp-route-Id="@trip.Id" type="submit" class="btn btn-primary">Details</button>
+                            @if((string)this.ViewData["CurrentUserRole"] == "Admin")
+                            {
+                                <button asp-action="Delete" asp-route-Id="@trip.Id" type="submit" class="btn btn-primary">Delete</button>
+                            }
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        }
+    }
+</table>

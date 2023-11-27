@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Home"
+;}
+
+@{ this.ViewData["IsAuthenticated"] = this.Context.Request.Cookies.ContainsKey("UserKey");
+    this.ViewData["CurrentUserRole"] = this.Context.Request.Cookies["UserRole"]; }
+
+@model Carpooling.MVC.Models.HomePageViewModel
+
+<!DOCTYPE html>
+<div class="text-center">
+
+    <section id="firstPage">
+
+        <div class="container position-relative">
+            <div class="text-center">
+                <h1 class="mb-4 display-1 lh-sm text-center">Don't travel alone!<br class="d-block d-lg-none d-xl-block" />Find your travel buddy now!</h1>
+                <p class="mt-4 mb-5 fs-1 lh-base text-center">Join other like-minded people in saving money and the planet by car sharing</p>
+                @if(!(bool)this.ViewData["IsAuthenticated"])
+                {
+                    <a class="btn btn-lg btn-primary hover-top" asp-controller="Auth" asp-action="RegisterForm" role="button">Register Now</a>
+                }
+                else
+                {
+                    <a class="btn btn-lg btn-primary hover-top" asp-controller="Trip" asp-action="Index" role="button">Available Trips</a>
+
+                }
+            </div>
+        </div>
+
+    </section>
+    <br>
+    <div class="row">
+        <div class="col">
+            <img src="~/assets/defaultImage/signUp.png" alt="">
+            <div class="how-work-text">
+                <h4>Register For Free</h4>
+                <p>Drivers and passengers don’t pay any registration or membership fee. Everything is free, because our aim is to make traveling accessible to everybody!</p>
+            </div>
+        </div>
+        <div class="col">
+
+            <img src="~/assets/defaultImage/dailyTrips.png" alt="">
+            <div class="how-work-text">
+                <h4>Daily Trips</h4>
+                <p>Find a carpool buddy for your daily commute at no cost and even make a schedule so you can travel frequently together!</p>
+            </div>
+        </div>
+        <div class="col">
+            <img src="~/assets/defaultImage/longDistance.png" alt="">
+            <div class="how-work-text">
+                <h4>Long Distance Trips</h4>
+                <p>Post or book a ride everywhere in Еurope. Both short and long distance destinations are available!</p>
+            </div>
+        </div>
+    </div>
+    <section id="numbers">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-3 no-padding text-center num d-flex flex-column">
+                    <i class="fa fa-user"></i>
+                    <h3 class='font-weight-bold' data-min='0' data-max='' data-delay='5' data-increment='1'>@Model.Users.Count()</h3>
+                    <h4>Users</h4>
+
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 no-padding text-center num d-flex flex-column">
+                    <i class="fa fa-car-side"></i>
+                    <h3 class='font-weight-bold' data-min='0' data-max='@Model.Trips.Count()' data-delay='4' data-increment='1'>@Model.Trips.Count()</h3>
+                    <h3>Trips</h3>
+
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 no-padding text-center num d-flex flex-column">
+                    <i class="fa fa-car-side"></i>
+                    <h3 class='font-weight-bold' data-min='0' data-max='@Model.Feedbacks.Count()' data-delay='4' data-increment='1'>@Model.Feedbacks.Count()</h3>
+                    <h3>Feedbacks</h3>
+
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 no-padding text-center num d-flex flex-column">
+                    <i class="fa fa-car-side"></i>
+                    <h3 class='font-weight-bold' data-min='0' data-max='@Model.AverageRating' data-delay='4' data-increment='1'>@Model.AverageRating</h3>
+                    <h3>Average Rating</h3>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="pt-5" id="featuresVideos">
+        <div class="container">
+            <div class="row flex-center">
+                <div class="col-12">
+                    <div class="carousel slide" id="carouselExampleIndicators" data-bs-touch="false" data-bs-interval="false">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-xxl-7 px-2">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active h-100">
+                                        <div id="player" class="player" data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY">
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/-LQtdKgipPI" title="YouTube video player" frameborder="0" allow="accelerometer;
+                                                autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,33 @@
+﻿@{ ViewBag.Title = "Feedback For Me"; }
+@model ICollection<Carpooling.MVC.Models.FeedbackModel>
+
+<h2>My Trips</h2>
+<form asp-controller="Trip" asp-action="MyTrips" >
+    <button type="submit" class="btn btn-primary">Back</button>
+</form>
+<br>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Rating </th>
+            <th scope="col">Comment</th>
+            <th scope="col">Driver/Passenger</th>
+            <th scope="col">Trip Departure</th>
+            <th scope="col">From - To</th>
+        </tr>
+    </thead>
+    @{
+        foreach(var comment in this.Model)
+        {
+            <tbody>
+                <tr class="table-active">
+                    <th scope="row">@comment.Rating</th>
+                    <td>@comment.Description</td>
+                    <td>@comment.Role</td>
+                    <td>@comment.Departure</td>
+                    <td>@comment.StartDestination - @comment.EndDestination</td>
+                </tr>
+            </tbody>
+        }
+    }
+</table>
