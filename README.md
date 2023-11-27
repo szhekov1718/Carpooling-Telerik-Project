@@ -21,7 +21,7 @@ Carpooling is a web application that enables you to share your travel from one l
 - Moq
 - LINQ
 
-Teamwork and communication: Git (GitLab) with separate branches, Git Lab Issues and board, MS Teams.
+Teamwork and communication: GitLab with separate branches, Git Lab Issues and board, MS Teams.
 
 Best programming practices and principles used: OOP, SOLID, and KISS principles, client-side  and server-side data validation, exception handling, unit testing of the "business" functionality, etc.
 
@@ -38,10 +38,8 @@ Our carpooling solution includes 5 projects:
 
 
 ## **Authors**
-- [Stanimir Zhekov](https://app.enhancv.com/share/20d26942?utm_medium=growth&utm_campaign=share-resume&utm_source=dynamic)
-- [Stanislav Staykov](https://app.enhancv.com/share/25ce25f6?utm_medium=growth&utm_campaign=share-resume&utm_source=dynamic)
-
-- [Gitlab Board](https://gitlab.com/stanimir-and-stanislav/carpooling/-/boards)
+- [Stanimir Zhekov](https://www.linkedin.com/in/stanimir-zhekov/)
+- Stanislav Staykov
 
 
 ## External Services
@@ -160,13 +158,4 @@ The API supports all the functionalities of the web part of the application.
 
 ![SwaggerPart1](Screenshots/swaggerPart1.png)
 ![SwaggerPart2](Screenshots/swaggerPart2.png)
-
-## **Project Set Up**
-
-1. Clone or download the project on your local machine using https://gitlab.com/stanimir-and-stanislav/carpooling.git
-2. The files will be downloaded and you can run the solution.
-3. Update the database to the last migration.
-4. Data will be seeded when the database is updated.
-5. Open new terminal and run the project: dotnet run --project Carpooling.MVC
-6. Open your browser and navigate to http://localhost:5001/
 
